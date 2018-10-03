@@ -33,38 +33,26 @@ public class PageObjectModel  {
      private static WebDriver driver = null;
 
      public static void main(String[] args) throws InterruptedException {
-    	  	 
-    	 System.setProperty("webdriver.gecko.driver","C:\\Users\\anhtl\\Downloads\\geckodriver-v0.22.0-win64\\geckodriver.exe");
-    	 System.setProperty("webdriver.chrome.driver","F:\\Webdriver\\chromedriver_win32\\chromedriver.exe");
+    
     	 
-    	 WebDriver driver = new ChromeDriver();
+    	 //Setup
+     WebDriver driver = new ChromeDriver();
      driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); //Wait time
-
      driver.get("https://www.google.com");  // Navigate Google
      
+     
+     // Start test
      Home_Page.lnk_Signin(driver).click(); // Click Sign In
-     
-     
      LogIn_Page.txtbx_EmailOrPhone(driver).sendKeys("mindy.kenz@gmail.com"); // Fill textbox Email
-     
      LogIn_Page.Button_Next(driver).click(); //Click Next
- 		
      Thread.sleep(2000);
-            
      LogIn_Page.txtbx_Password(driver).sendKeys("753869123"); // Fill pw
-     //
-     LogIn_Page.btn_LogIn(driver).click(); // Click LogIn
-          
+     LogIn_Page.btn_LogIn(driver).click(); // Click LogIn    
      Thread.sleep(2000);
-     
      SearchPage.Search_Input(driver).sendKeys("Eclipse"); // Fill keyword "Eclipse"
-     
      Thread.sleep(1000);
-     
      SearchPage.Button_Search(driver).sendKeys(Keys.ENTER);; //Enter
-
      Thread.sleep(2000);
-
      SearchPage.Hyperlink_Click1(driver).click(); // Click 1st link 
      // Check tiltle
      Assert.assertEquals("Enabling Open Innovation & Collaboration | The Eclipse Foundation", SearchPage.Verify_Tiltle(driver));    
